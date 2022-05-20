@@ -1,0 +1,371 @@
+{
+  "metadata": {
+    "schemaVersion": "1.0",
+    "importType": "LEX",
+    "importFormat": "JSON"
+  },
+  "resource": {
+    "name": "RestaurantBot",
+    "version": "1",
+    "intents": [
+      {
+        "rejectionStatement": {
+          "messages": [
+            {
+              "contentType": "PlainText",
+              "content": "okay thank you have great day Now let's"
+            }
+          ]
+        },
+        "name": "RestaurantOrder",
+        "version": "5",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "order me",
+          "please order",
+          "i would like to order"
+        ],
+        "slots": [
+          {
+            "sampleUtterances": [],
+            "slotType": "AMAZON.City",
+            "obfuscationSetting": "NONE",
+            "slotConstraint": "Required",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "in which city you would like to place order"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 3,
+            "name": "City"
+          },
+          {
+            "sampleUtterances": [],
+            "slotType": "AMAZON.DATE",
+            "obfuscationSetting": "NONE",
+            "slotConstraint": "Required",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "On which date would you like the order delivered"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 6,
+            "name": "date"
+          },
+          {
+            "sampleUtterances": [],
+            "slotType": "TypesofDishes",
+            "slotTypeVersion": "1",
+            "obfuscationSetting": "NONE",
+            "slotConstraint": "Required",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "What would you like to order"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 1,
+            "name": "items"
+          },
+          {
+            "sampleUtterances": [],
+            "slotType": "AMAZON.FirstName",
+            "obfuscationSetting": "NONE",
+            "slotConstraint": "Required",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "The order should be placed on the name of"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 5,
+            "name": "Name"
+          },
+          {
+            "sampleUtterances": [],
+            "slotType": "AMAZON.NUMBER",
+            "obfuscationSetting": "NONE",
+            "slotConstraint": "Required",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "What is the quantity"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 2,
+            "name": "quantity"
+          },
+          {
+            "sampleUtterances": [],
+            "slotType": "AMAZON.StreetName",
+            "obfuscationSetting": "NONE",
+            "slotConstraint": "Required",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "in which street you would like to place order"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 4,
+            "name": "streetno"
+          }
+        ],
+        "confirmationPrompt": {
+          "messages": [
+            {
+              "contentType": "PlainText",
+              "content": "would you like to order {items} of quantity {quantity} on the name of {Name} at {City}"
+            }
+          ],
+          "maxAttempts": 3
+        },
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "okay your order {items} of quantity {quantity} on the name of {Name} at {City} will be delivered on {date}"
+            }
+          ]
+        }
+      },
+      {
+        "name": "GeneralGreeting",
+        "version": "1",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "hi",
+          "hello",
+          "hey",
+          "help"
+        ],
+        "slots": [
+          {
+            "sampleUtterances": [],
+            "slotType": "WhishingStyles",
+            "slotTypeVersion": "1",
+            "obfuscationSetting": "NONE",
+            "slotConstraint": "Required",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "hello, I am Resto Bot I would help you with menu, Online order, reserving table"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 1,
+            "name": "wsh"
+          }
+        ],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "{wsh}, I am Resto Bot I would help you with menu, Online order, reserving table"
+            }
+          ]
+        }
+      },
+      {
+        "rejectionStatement": {
+          "messages": [
+            {
+              "contentType": "PlainText",
+              "content": "okay thank you have a great day"
+            }
+          ]
+        },
+        "name": "RestaurantMenu",
+        "version": "3",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "menu please",
+          "could you please help me with today's menu",
+          "what is todays menu"
+        ],
+        "slots": [
+          {
+            "sampleUtterances": [],
+            "slotType": "RestaurantCard",
+            "slotTypeVersion": "1",
+            "obfuscationSetting": "NONE",
+            "slotConstraint": "Required",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "This is our menu"
+                }
+              ],
+              "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\",\"genericAttachments\":[{\"imageUrl\":\"https://5.imimg.com/data5/TJ/ZW/KI/SELLER-5011233/restaurant-menu-card-500x500.jpg\",\"subTitle\":\"MenuCard\",\"title\":\"Restaurants menu\",\"buttons\":[{\"text\":\"Menu\",\"value\":\"Dishes\"}]}]}",
+              "maxAttempts": 2
+            },
+            "priority": 1,
+            "name": "MenuCard"
+          }
+        ],
+        "confirmationPrompt": {
+          "messages": [
+            {
+              "contentType": "PlainText",
+              "content": "would you like to order??"
+            }
+          ],
+          "maxAttempts": 3
+        },
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "This is the menu please order from menu"
+            }
+          ]
+        }
+      },
+      {
+        "rejectionStatement": {
+          "messages": [
+            {
+              "contentType": "PlainText",
+              "content": "Okay please order food or reserve table"
+            }
+          ]
+        },
+        "name": "ThankingYou",
+        "version": "1",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "bye",
+          "thank you"
+        ],
+        "slots": [],
+        "confirmationPrompt": {
+          "messages": [
+            {
+              "contentType": "PlainText",
+              "content": "Are you sure you want to exit"
+            }
+          ],
+          "maxAttempts": 3
+        },
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "Thankyou for choosing our app"
+            }
+          ]
+        }
+      }
+    ],
+    "slotTypes": [
+      {
+        "name": "RestaurantCard",
+        "version": "1",
+        "enumerationValues": [
+          {
+            "value": "Items"
+          },
+          {
+            "value": "Dishes"
+          }
+        ],
+        "valueSelectionStrategy": "ORIGINAL_VALUE"
+      },
+      {
+        "name": "TypesofDishes",
+        "version": "1",
+        "enumerationValues": [
+          {
+            "value": "Egg Biryani"
+          },
+          {
+            "value": "Veg Biryani"
+          },
+          {
+            "value": "Mutton Biryani"
+          },
+          {
+            "value": "Fish Biryani"
+          },
+          {
+            "value": "Chicken Biryani"
+          }
+        ],
+        "valueSelectionStrategy": "ORIGINAL_VALUE"
+      },
+      {
+        "name": "WhishingStyles",
+        "version": "1",
+        "enumerationValues": [
+          {
+            "value": "Good afternoon "
+          },
+          {
+            "value": "Good morning "
+          },
+          {
+            "value": "Good evening "
+          }
+        ],
+        "valueSelectionStrategy": "ORIGINAL_VALUE"
+      }
+    ],
+    "voiceId": "Nicole",
+    "childDirected": false,
+    "locale": "en-AU",
+    "idleSessionTTLInSeconds": 300,
+    "clarificationPrompt": {
+      "messages": [
+        {
+          "contentType": "PlainText",
+          "content": "Sorry, can you please repeat that?"
+        }
+      ],
+      "maxAttempts": 5
+    },
+    "abortStatement": {
+      "messages": [
+        {
+          "contentType": "PlainText",
+          "content": "Sorry, I could not understand. Goodbye."
+        }
+      ]
+    },
+    "detectSentiment": false,
+    "enableModelImprovements": true
+  }
+}
